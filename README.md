@@ -5,4 +5,4 @@
 ## Overview
 ![COCL](images/COCL.png)
 
-<img src="images/COCL.png" alt="COCL" style="max-width: 100%; height: auto;" />
+<img src="images/COCL.png" alt="COCL" style="max-width: 100\%; height: auto;" />
