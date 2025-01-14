@@ -4,3 +4,5 @@
 
 ## Overview
 ![COCL](images/COCL.png)
+
+## Preparation
