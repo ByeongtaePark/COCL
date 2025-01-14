@@ -7,4 +7,4 @@
 
 ## Preparation
 ### Dependencies
-``` pip install -r requirements.txt ```
+``` python pip install -r requirements.txt ```
