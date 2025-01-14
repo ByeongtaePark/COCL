@@ -6,3 +6,5 @@
 ![COCL](images/COCL.png)
 
 ## Preparation
+### Dependencies
+``` pip install -r requirements.txt '''
