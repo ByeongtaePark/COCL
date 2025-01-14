@@ -10,3 +10,6 @@
 ```
 pip install -r requirements.txt
 ```
+
+### Dataset
+MixedWM38 : [WaferMap Dataset: MixedWM38](https://github.com/Junliangwangdhu/WaferMap?tab=readme-ov-file)
