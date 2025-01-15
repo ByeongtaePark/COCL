@@ -18,7 +18,7 @@ timm: 1.0.9
 ```
 
 ### Dataset
-Semiconductor die dataset cannot be disclosed due to considerations of security and confidentiality.
+***Semiconductor die dataset cannot be disclosed due to considerations of security and confidentiality.***
 
 MixedWM38 : [WaferMap Dataset: MixedWM38](https://github.com/Junliangwangdhu/WaferMap?tab=readme-ov-file)
 
