@@ -27,3 +27,7 @@ tar -xzvf {filename}.tar.gz
 
 ## Usage
 ### Data augmentation
+TBD
+```
+python preprocess_mixedwm38.py
+```
