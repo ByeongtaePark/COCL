@@ -1,6 +1,6 @@
 # Crack-oriented contrastive learning for enhanced surface defect detection: a universally applicable approach
 
-**The code will be released after the publication of the corresponding paper.**
+***The code will be released after the publication of the corresponding paper.***
 
 ## Overview
 ![COCL](images/COCL.png)
@@ -18,7 +18,7 @@ timm: 1.0.9
 ```
 
 ### Dataset
-***Semiconductor die dataset cannot be disclosed due to considerations of security and confidentiality.***
+**Semiconductor die dataset cannot be disclosed due to considerations of security and confidentiality.**
 
 MixedWM38 : [WaferMap Dataset: MixedWM38](https://github.com/Junliangwangdhu/WaferMap?tab=readme-ov-file)
 
