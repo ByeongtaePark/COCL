@@ -20,7 +20,7 @@ timm: 1.0.9
 ### Dataset
 **Semiconductor die dataset cannot be disclosed due to considerations of security and confidentiality.**
 
-MixedWM38 : [WaferMap Dataset: MixedWM38](https://github.com/Junliangwangdhu/WaferMap?tab=readme-ov-file)
+MixedWM38 : [WaferMap Dataset](https://github.com/Junliangwangdhu/WaferMap?tab=readme-ov-file)
 
 The original shape of MixedWM38 is incompatible with pre-trained models, necessitating minor preprocessing. The raw data was reshaped to (224, 224, 3) and underwent label encoding. The processed dataset is available in the directory ```COCL/datasets/MixedWM38/```. The processed dataset has been compressed into a tar.gz file, which can be extracted using the following code:
 ```
