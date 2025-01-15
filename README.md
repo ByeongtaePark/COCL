@@ -20,5 +20,9 @@ timm: 1.0.9
 ### Dataset
 MixedWM38 : [WaferMap Dataset: MixedWM38](https://github.com/Junliangwangdhu/WaferMap?tab=readme-ov-file)
 
+'''
+tar -xzvf ~.tar.gz
+'''
+
 ## Usage
 ### Data augmentation
