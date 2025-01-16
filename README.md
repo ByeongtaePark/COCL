@@ -75,6 +75,11 @@ This table reports comparative results on semiconductor die dataset, reported as
 | *CE*(Original) |      82.2       |        84.0        |        82.4        |       83.2        |      80.0       |      82.4     |
 | **COCL**       |     **86.3**    |      **86.7**      |      **84.9**      |     **87.5**      |    **86.6**     |    **86.4**   |
 
+### MixedWM38 dataset
+This table reports comparative results on semiconductor die dataset, reported as the average accuracy (%) across the five-fold cross-validation.
+| Backbone          | *CE*(CD) | *CE*(Combined) | *CE*(Original) | COCL |
+|-----------------|:---------------:|:------------------:|:------------------:|:-----------------:|
+| ResNet50       |      97.4       |        98.1        |        97.9        |       98.7        |
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
