@@ -32,7 +32,7 @@ This is an example of running COCL on MixedWM38 dataset.
 
 ### Data augmentation
 Data augmentation ~ TBD.
-![aug](images/COCL.png)
+![aug](images/aug.png)
 
 ```preprocess_mixedwm38.py``` conducts canny edge detection and dilation operation.
 ```
