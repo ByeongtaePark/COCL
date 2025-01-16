@@ -22,7 +22,7 @@ timm: 1.0.9
 
 MixedWM38 : [WaferMap Dataset](https://github.com/Junliangwangdhu/WaferMap?tab=readme-ov-file)
 
-The original shape of MixedWM38 is incompatible with pre-trained models, necessitating minor preprocessing. The raw data was reshaped to (224, 224, 3) and underwent label encoding. The processed dataset is available in the directory ```COCL/datasets/MixedWM38/```. The processed dataset has been compressed into a tar.gz file, which can be extracted using the following code:
+The original shape of MixedWM38 is incompatible with pre-trained models, necessitating minor processing. The raw data was transformed into a shape of (224, 224, 3) and subjected to label encoding. The processed dataset is available in the directory ```COCL/datasets/MixedWM38/```. The processed dataset has been compressed into a tar.gz file, which can be extracted using the following code:
 ```
 tar -xzvf {filename}.tar.gz
 ```
