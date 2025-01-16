@@ -74,3 +74,6 @@ This table reports comparative results on semiconductor die dataset, reported as
 | *CE*(Combined) |      80.9       |        84.8        |        83.5        |       87.0        |      71.1       |      81.5     |
 | *CE*(Original) |      82.2       |        84.0        |        82.4        |       83.2        |      80.0       |      82.4     |
 | **COCL**       |     **86.3**    |      **86.7**      |      **84.9**      |     **87.5**      |    **86.6**     |    **86.4**   |
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
