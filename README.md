@@ -28,13 +28,15 @@ tar -xzvf {filename}.tar.gz
 ```
 
 ## Usage
+This is an example of running COCL on MixedWM38 dataset.
+
 ### Data augmentation
 ```preprocess_mixedwm38.py``` conducts canny edge detection and dilation operation.
 ```
 python preprocess_mixedwm38.py
 ```
 
-After data installation $ augmentation, you may get following folder structure.
+After data installation & augmentation, you may get following folder structure.
 ```
 ├── COCL
 │  ├── datasets
@@ -43,3 +45,4 @@ After data installation $ augmentation, you may get following folder structure.
 │       └── Images_CD
 │       └── Labels
 ```
+### Training models with COCL
