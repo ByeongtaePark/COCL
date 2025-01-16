@@ -33,3 +33,11 @@ TBD
 ```
 python preprocess_mixedwm38.py
 ```
+
+├── [Your Pascal Path]
+    ├── JPEGImages
+    └── SegmentationClass
+    
+├── [Your Cityscapes Path]
+    ├── leftImg8bit
+    └── gtFine
