@@ -46,9 +46,9 @@ After data installation & augmentation, you may get following folder structure.
 │       └── Labels
 ```
 ### Training models with COCL
-Then, COCL is executed with the following example code.
-```network``` must be one of 'resnet', 'densenet', 'efficientnet', 'regnet', convnext'.
-```cont_loss``` must be one of 'cocl', 'supcon', 'infonce'
+Then, COCL is executed with the following example code:
+```--network``` must be one of 'resnet', 'densenet', 'efficientnet', 'regnet', convnext'.
+```--cont_loss``` must be one of 'cocl', 'supcon', 'infonce'
 
 ```
 root_dir=... # Current folder path
