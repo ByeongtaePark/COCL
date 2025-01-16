@@ -66,7 +66,8 @@ python main.py \
 ```
 
 ## Main results
-
+### Semiconductor die dataset
+Comparative results on semiconductor die dataset, reported as the average accuracy (%) across the five-fold cross-validation.
 | Method          | ResNet50 | DenseNet121 | EfficientB4 | RegNetY032 | ConvBase | Avg. accuracy |
 |-----------------|:---------------:|:------------------:|:------------------:|:-----------------:|:---------------:|:-------------:|
 | *CE*(CD)       |      74.5       |        72.1        |        71.5        |       73.4        |      62.8       |      72.9     |
