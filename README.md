@@ -45,13 +45,15 @@ After data installation & augmentation, you may get following folder structure.
 │       └── Images_CD
 │       └── Labels
 ```
-### Training models with COCL
-Then, COCL is executed with the following example code:
-```--network``` must be one of 'resnet', 'densenet', 'efficientnet', 'regnet', convnext'.
-```--cont_loss``` must be one of 'cocl', 'supcon', 'infonce'
 
-```
-root_dir=... # Current folder path
+### Training Models with COCL
+COCL can be executed using the following example code:
+
+- `--network`: Specifies the backbone network. Must be one of `'resnet'`, `'densenet'`, `'efficientnet'`, `'regnet'`, or `'convnext'`.
+- `--cont_loss`: Specifies the contrastive loss type. Must be one of `'cocl'`, `'supcon'`, or `'infonce'`.
+
+```bash
+root_dir=...  # Current folder path
 python main.py \
   --batch_size 64 \
   --network resnet \
@@ -62,3 +64,4 @@ python main.py \
   --ts 0.1 \
   --num_classes 38
 ```
+
