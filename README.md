@@ -29,15 +29,17 @@ tar -xzvf {filename}.tar.gz
 
 ## Usage
 ### Data augmentation
-TBD
+```preprocess_mixedwm38.py``` conducts canny edge detection and dilation operation.
 ```
 python preprocess_mixedwm38.py
 ```
 
-├── [Your Pascal Path]
-    ├── JPEGImages
-    └── SegmentationClass
-    
-├── [Your Cityscapes Path]
-    ├── leftImg8bit
-    └── gtFine
+After data installation $ augmentation, you may get following folder structure.
+```
+├── COCL
+│  ├── datasets
+|    ├── MixedWM38
+│       └── Images
+│       └── Images_CD
+│       └── Labels
+```
