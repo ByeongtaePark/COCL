@@ -75,5 +75,11 @@ This table reports comparative results on semiconductor die dataset, reported as
 | *CE*(Original) |      82.2       |        84.0        |        82.4        |       83.2        |      80.0       |      82.4     |
 | **COCL**       |     **86.3**    |      **86.7**      |      **84.9**      |     **87.5**      |    **86.6**     |    **86.4**   |
 
+Our searched hyperparameters:
+|            | ResNet50 | DenseNet121 | EfficientB4 | RegNetY032 | ConvBase |
+|------------|:---------------:|:------------------:|:------------------:|:-----------------:|:---------------:|
+| \tau       |      0.01       |        0.02        |        0.01        |       0.02        |      0.06       |
+| \lambda    |      1.0       |        0.1        |        1.0        |       1.0        |      0.1       |
+
 ## License
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
