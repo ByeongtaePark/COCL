@@ -1,6 +1,6 @@
 # Crack-oriented contrastive learning for enhanced surface defect detection: a universally applicable approach
 
-***The code will be released after the publication.***
+***The code will be released after publication.***
 
 ## Overview
 ![COCL](images/COCL.png)
