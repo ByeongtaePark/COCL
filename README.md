@@ -1,92 +1,97 @@
-# Crack-oriented contrastive learning for enhanced surface defect detection: a universally applicable approach
+# Crack-Oriented Contrastive Learning (COCL)
 
-***The code will be released after publication.***
+Official PyTorch implementation of **"Crack-oriented contrastive learning for surface defect classification"** (Applied Soft Computing, in press).
 
 ## Overview
-![COCL](images/COCL.png)
 
-## Preparation
-### Environments
+![COCL overview](assets/overview.png)
+
+COCL is a training framework for crack-type surface defect classification with three components:
+
+1. **Crack-aware augmentation.** An edge map of the raw image is obtained with Canny and dilated with a 3×3 kernel, which yields the crack-aware view.
+2. **Crack-specific contrastive pair construction.** Each raw image and its crack-aware view form an instance-level positive pair. Views from other classes are negatives. Other views from the same class are excluded from the contrastive term.
+3. **Joint optimization.** Raw images and crack-aware views are concatenated along the batch dimension. The model is trained with $\mathcal{L} = \mathcal{L}_{CE} + \lambda \mathcal{L}_{cont}$.
+
+COCL changes the training procedure but not the architecture. At test time, the model uses only raw images.
+
+## Repository Structure
+
 ```
-Python: 3.9.19
-PyTorch: 2.3.1
-Torchvision: 0.18.1
-CUDA: 11.8
-NumPy: 1.26.3
-PIL: 10.2.0
-timm: 1.0.9
+COCL/
+├── cocl/
+│   ├── data.py      # Paired raw / crack-aware image dataset
+│   ├── loss.py      # Crack-oriented contrastive loss
+│   ├── model.py     # VGG-16 backbone + linear classifier
+│   └── utils.py     # Seeding and evaluation metrics
+├── train.py         # Training with early stopping, then test evaluation
+├── test.py          # Evaluation of a trained checkpoint
+├── assets/
+└── LICENSE
 ```
 
-### Dataset
-**Semiconductor die dataset cannot be disclosed due to considerations of security and confidentiality.**
+## Requirements
 
-MixedWM38 : [WaferMap Dataset](https://github.com/Junliangwangdhu/WaferMap?tab=readme-ov-file)
+- Python 3.9.19
+- PyTorch 2.3.1
+- torchvision 0.18.1
+- CUDA 11.8
+- NumPy 1.26.3
+- Pillow 10.2.0
+- scikit-learn 1.5.1
 
-The original shape of MixedWM38 is incompatible with pre-trained models, necessitating minor processing. The raw data was transformed into a shape of (224, 224, 3) and subjected to label encoding. The processed dataset is available in the directory ```COCL/datasets/MixedWM38/```. The processed dataset has been compressed into a tar.gz file, which can be extracted using the following code:
+## Data Preparation
+
+The datasets used in the paper are not distributed with this repository. Prepare your data in the following layout. Class names are taken from the subfolder names.
+
 ```
-tar -xzvf {filename}.tar.gz
+data_root/
+├── train/        # raw training images:  <class>/<image>
+├── train_aug/    # crack-aware views:     <class>/<image>
+├── val/          # raw validation images
+└── test/         # raw test images
 ```
+
+The crack-aware views are precomputed once before training. Each view in `train_aug/` must have the same relative path as its raw image in `train/`. In the paper, the views were generated with the Canny detector using adaptive thresholds, followed by dilation with a 3×3 square kernel. Validation and test sets use raw images only.
 
 ## Usage
-This is an example of running COCL on MixedWM38 dataset.
 
-### Data augmentation
-
-<img src="images/aug.png" alt="aug" style="width:50%; height:auto;">
-
-```preprocess_mixedwm38.py``` conducts canny edge detection and dilation operation.
-```
-python preprocess_mixedwm38.py
-```
-
-After data installation & augmentation, you may get following folder structure.
-```
-├── COCL
-│  ├── datasets
-|    ├── MixedWM38
-│       └── Images
-│       └── Images_CD
-│       └── Labels
-```
-
-### Training Models with COCL
-COCL can be executed using the following example code:
-
-- `--network`: Specifies the backbone network. Must be one of `'resnet'`, `'densenet'`, `'efficientnet'`, `'regnet'`, or `'convnext'`.
-- `--cont_loss`: Specifies the contrastive loss type. Must be one of `'cocl'`, `'supcon'`, or `'infonce'`.
+**Training.** The checkpoint with the lowest validation cross-entropy loss is saved to `--output_dir/best_model.pth` and then evaluated on `test/`.
 
 ```bash
-root_dir=...  # Current folder path
-python main.py \
-  --batch_size 64 \
-  --network resnet \
-  --epoch 300 \
-  --data ${root_dir}/datasets/MixedWM38 \
-  --cont_loss cocl \
-  --lambda_c 0.02 \
-  --ts 0.1 \
-  --num_classes 38
+python train.py --data_root /path/to/data_root --lambda_c 0.01 --temperature 0.1
 ```
 
-## Main results
-### Semiconductor die dataset
-This table reports comparative results on semiconductor die dataset, reported as the average accuracy (%) across the five-fold cross-validation.
-| Method          | ResNet50 | DenseNet121 | EfficientB4 | RegNetY032 | ConvBase | Avg. accuracy |
-|-----------------|:---------------:|:------------------:|:------------------:|:-----------------:|:---------------:|:-------------:|
-| *CE*(CD)       |      74.5       |        72.1        |        71.5        |       73.4        |      62.8       |      72.9     |
-| *CE*(Combined) |      80.9       |        84.8        |        83.5        |       87.0        |      71.1       |      81.5     |
-| *CE*(Original) |      82.2       |        84.0        |        82.4        |       83.2        |      80.0       |      82.4     |
-| **COCL**       |     **86.3**    |      **86.7**      |      **84.9**      |     **87.5**      |    **86.6**     |    **86.4**   |
+| Argument | Default | Description |
+|---|---|---|
+| `--lambda_c` | 0.01 | Contrastive loss weight λ |
+| `--temperature` | 0.1 | Temperature τ |
+| `--batch_size` | 64 | Mini-batch size B |
+| `--lr` | 1e-3 | Adam learning rate |
+| `--patience` | 5 | Early-stopping patience (validation CE loss) |
+| `--epochs` | 300 | Maximum number of epochs |
+| `--seed` | 0 | Random seed |
+| `--output_dir` | `checkpoints` | Directory for the best checkpoint |
 
-### MixedWM38 dataset
-This table reports comparative results on semiconductor die dataset, reported as the average accuracy (%) across the five-fold cross-validation.
+**Evaluation.**
 
-| Method          | ResNet50 |
-|-----------------|:---------------:|
-| *CE*(CD)       |      97.4       |
-| *CE*(Combined) |      98.1       |
-| *CE*(Original) |      97.9       |
-| **COCL**       |     **98.7**    |
+```bash
+python test.py --test_dir /path/to/data_root/test --checkpoint checkpoints/best_model.pth
+```
+
+## Citation
+
+The paper has been accepted and is in press. Volume and page numbers will be added after publication.
+
+```bibtex
+@article{park2026cocl,
+  title   = {Crack-oriented contrastive learning for surface defect classification},
+  author  = {Park, Byeongtae and Kim, Seonggyeom and Chae, Dong-Kyu and Joung, Junegak},
+  journal = {Applied Soft Computing},
+  year    = {2026},
+  doi     = {10.1016/j.asoc.2026.116564}
+}
+```
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+This project is released under the [MIT License](LICENSE).
