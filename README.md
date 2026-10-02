@@ -10,7 +10,7 @@ COCL is a training framework for crack-type surface defect classification with t
 
 1. **Crack-aware augmentation.** An edge map of the raw image is obtained with Canny and dilated with a 3×3 kernel, which yields the crack-aware view.
 2. **Crack-specific contrastive pair construction.** Each raw image and its crack-aware view form an instance-level positive pair. Views from other classes are negatives. Other views from the same class are excluded from the contrastive term.
-3. **Joint optimization.** Raw images and crack-aware views are concatenated along the batch dimension. The model is trained with $'\mathcal{L} = \mathcal{L}_{CE} + \lambda \mathcal{L}_{cont}'$.
+3. **Joint optimization.** Raw images and crack-aware views are concatenated along the batch dimension. The model is trained with $`\mathcal{L} = \mathcal{L}_{CE} + \lambda \mathcal{L}_{cont}`$.
 
 COCL changes the training procedure but not the architecture. At test time, the model uses only raw images.
 
